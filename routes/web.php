@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Auth\Login;
 use App\Livewire\User\UserIndex;
 use App\Livewire\User\UserShow;
 use App\Livewire\User\UserCreate;
@@ -17,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', Login::class);
 
-Route::get('/users', UserIndex::class);
-Route::get('/users/{id}/show', UserShow::class);
-Route::get('/users/create', UserCreate::class);
-Route::get('/users/{id}/edit', UserEdit::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/users', UserIndex::class);
+    Route::get('/users/{id}/show', UserShow::class);
+    Route::get('/users/create', UserCreate::class);
+    Route::get('/users/{id}/edit', UserEdit::class);
+});

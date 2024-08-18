@@ -11,7 +11,8 @@
 </head>
 
 <body class="bg-dark">
-    <div class="container py-5">
+    <livewire:navbar />
+    <div class="container d-flex align-items-center vh-100 py-5">
         {{ $slot }}
     </div>
 </body>
